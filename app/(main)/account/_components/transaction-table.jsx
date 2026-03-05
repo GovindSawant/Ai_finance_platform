@@ -180,7 +180,12 @@ export function TransactionTable({ transactions }) {
 
   useEffect(() => {
     if (deleted && !deleteLoading) {
-      toast.error("Transactions deleted successfully");
+      if (deleted.success) {
+        toast.success("Transactions deleted successfully");
+        setSelectedIds([]); // Clear selected IDs after successful deletion
+      } else {
+        toast.error(deleted.error || "Failed to delete transactions");
+      }
     }
   }, [deleted, deleteLoading]);
 

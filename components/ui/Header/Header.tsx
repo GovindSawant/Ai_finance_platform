@@ -1,11 +1,12 @@
 import React from 'react'
-import { SignInButton, SignedOut, SignedIn, UserButton, SignUpButton} from '@clerk/nextjs'
+import { SignInButton, SignedOut, SignedIn, UserButton, SignUpButton } from '@clerk/nextjs'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Button } from '../button'
 import { LayoutDashboard, PenBox } from 'lucide-react'
 import { Item } from '@radix-ui/react-dropdown-menu'
 import { checkUser } from '@/lib/checkUser'
+import MobileMenu from './MobileMenu'
 
 const Header = async () => {
   await checkUser();
@@ -26,11 +27,11 @@ const Header = async () => {
           </div>
         </Link>
 
-        <div className='flex items-center space-x-4'> 
+        <div className='flex items-center space-x-4'>
           <SignedIn>
 
-            <Link href={"/dashboard"} 
-            className='text-gray-600 hover:text-blue-600 flex items-center gap-2'
+            <Link href={"/dashboard"}
+              className='text-gray-600 hover:text-blue-600 hidden md:flex items-center gap-2'
             >
               <Button variant="outline">
                 <LayoutDashboard size={18} />
@@ -38,7 +39,7 @@ const Header = async () => {
               </Button>
             </Link>
 
-            <Link href={"/transaction/create"}>
+            <Link href={"/transaction/create"} className='hidden md:flex'>
               <Button className='flex items-center gap-2'>
                 <PenBox size={18} />
                 <span className='hidden md:inline'>Add Transaction</span>
@@ -48,21 +49,22 @@ const Header = async () => {
 
 
           <SignedOut>
-          <SignInButton forceRedirectUrl='/dashboard'>
-            <Button variant="outline">Login</Button>
-          </SignInButton>
+            <SignInButton forceRedirectUrl='/dashboard'>
+              <Button variant="outline">Login</Button>
+            </SignInButton>
           </SignedOut>
           <SignedIn>
             <UserButton appearance={
               {
-                elements:{
+                elements: {
                   avatarBox: "w-10 h-10"
                 }
               }
-            }/>
-          </SignedIn>  
+            } />
+            <MobileMenu />
+          </SignedIn>
         </div>
-        
+
       </nav>
     </div>
   )

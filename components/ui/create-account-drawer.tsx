@@ -28,7 +28,7 @@ import { Switch } from "./switch";
 import { createAccount } from "@/actions/dashboard";
 import { accountSchema } from "@/app/lib/schema";
 
-export function CreateAccountDrawer({ children }) {
+export function CreateAccountDrawer({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
   const {
     register,
@@ -106,7 +106,7 @@ export function CreateAccountDrawer({ children }) {
                 Account Type
               </label>
               <Select
-                onValueChange={(value) => setValue("type", value)}
+                onValueChange={(value) => setValue("type", value as "CURRENT" | "SAVINGS")}
                 defaultValue={watch("type")}
               >
                 <SelectTrigger id="type">

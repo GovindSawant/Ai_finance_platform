@@ -15,13 +15,17 @@ export const metadata = {
   description: "Take control of your finances with AI-powered insights, budgeting tools, and expense tracking.",
   keywords: ["finance", "budgeting", "AI", "personal finance", "expense tracking", "financial planning"],
   authors: [{ name: "FinanceX AI" }],
-  viewport: "width=device-width, initial-scale=1",
   robots: "index, follow",
   openGraph: {
     title: "FinanceX AI - Smart Financial Management",
     description: "Take control of your finances with AI-powered insights",
     type: "website",
   },
+};
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
 };
 
 // Dynamically import Header to reduce initial bundle size
@@ -31,7 +35,7 @@ const Header = dynamic(() => import('@/components/ui/Header/Header'), {
   ssr: true,
 });
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <ClerkProvider>
       <html lang="en">
@@ -44,13 +48,13 @@ export default function RootLayout({ children }) {
           <Suspense fallback={null}>
             <Header />
           </Suspense>
-          
+
           <main className="min-h-screen">
             {children}
           </main>
 
           <Toaster richColors />
-          
+
           <footer className="bg-gray-800 text-white py-6">
             <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
               <p className="text-sm">&copy; 2025 AI Finance Platform. All rights reserved.</p>
