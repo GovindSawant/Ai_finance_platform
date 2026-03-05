@@ -1,3 +1,7 @@
+
+ !!!### OPEN THIS IN CODE VIEW ###!!!
+
+
 # AI Finance Platform
 
 > An AI-powered personal finance management application built with Next.js
